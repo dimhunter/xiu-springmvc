@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="2.4"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+  <display-name>springmvc</display-name>
+  
+  <!-- spring配置 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath*:base-ssh.xml,
+			classpath*:applicationContext-*.xml
+		</param-value>
+	</context-param>
+	
+	<!-- Spring MVC配置 -->
+	<servlet>     
+		<servlet-name>spring</servlet-name>     
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>     
+		<!-- 可以自定义servlet.xml配置文件的位置和名称，默认为WEB-INF目录下，名称为[<servlet-name>]-servlet.xml，如spring-servlet.xml-->      
+		<init-param>         
+			<param-name>contextConfigLocation</param-name>         
+			<param-value>classpath*:springmvc-servlet.xml</param-value>     
+		</init-param>     
+		<load-on-startup>1</load-on-startup> 
+	</servlet>   
+	<servlet-mapping>     
+		<servlet-name>spring</servlet-name>     
+		<url-pattern>*.do</url-pattern> 
+	</servlet-mapping> 
+  
+</web-app>
